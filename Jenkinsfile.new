@@ -2,12 +2,16 @@
 pipeline {
     agent any
 
+    environment {
+        IMAGE = "mario21ic/nginx:${BUILD_ID}"
+    }
+
     stages {
         stage('docker build') {
             steps {
                 script {
                     dockerLib.build(DockerfilePath: "./Dockerfile",
-                                    DockerImage: "mario21ic/nginx:${BUILD_ID}",
+                                    DockerImage: "${env.IMAGE}",
                                     DockerContext: "./")
                 }
             }
@@ -15,7 +19,7 @@ pipeline {
         stage('docker push') {
             steps {
                 script {
-                    dockerLib.push(DockerImage: "mario21ic/nginx:${BUILD_ID}")
+                    dockerLib.push(DockerImage: "${env.IMAGE}")
                 }
             }
         }
