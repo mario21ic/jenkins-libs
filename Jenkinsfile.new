@@ -1,0 +1,18 @@
+@Library('jenkinsLibs')
+pipeline {
+    agent any
+    stages {
+        stage('docker build') {
+            steps {
+                dockerLib.build(DockerfilePath: "./Dockerfile",
+                                DockerImage: "mario21ic/nginx:${env.BUILD_NUMBER}",
+                                DockerContext: "./")
+            }
+        }
+        stage('docker push') {
+            steps {
+                dockerLib.build(DockerImage: "mario21ic/nginx:${env.BUILD_NUMBER}")
+            }
+        }
+    }
+}

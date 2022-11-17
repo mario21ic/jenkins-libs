@@ -1,0 +1,15 @@
+pipeline {
+    agent any
+    stages {
+        stage('docker build') {
+            steps {
+                sh "docker build -f ./Dockerfile -t mario21ic/nginx:${env.BUILD_NUMBER} ./"
+            }
+        }
+        stage('docker push') {
+            steps {
+                sh "docker push mario21ic/nginx:${env.BUILD_NUMBER}"
+            }
+        }
+    }
+}
