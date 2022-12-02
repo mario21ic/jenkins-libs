@@ -27,7 +27,7 @@ pipeline {
                 sayHello 'mair'
                 script {
                     log.info 'Starting'
-                    echo "GlobalVars.foo: ${GlobalVars.foo}"
+                    //echo "GlobalVars.foo: ${GlobalVars.foo}"
 
                     dockerLib.build(DockerfilePath: "./Dockerfile",
                                     DockerImage: "${env.IMAGE}",
