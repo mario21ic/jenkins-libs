@@ -8,12 +8,17 @@ pipeline {
 
     stages {
         stage('docker build') {
+            env {
+                MYVAR = "myvaluexD"
+            }
             steps {
                 script {
                     dockerLib.build(DockerfilePath: "./Dockerfile",
                                     DockerImage: "${env.IMAGE}",
                                     DockerContext: "./")
+                    echo ${env.MYVAR}
                 }
+                echo ${env.MYVAR}
             }
         }
         stage('docker push') {
