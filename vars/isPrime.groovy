@@ -7,6 +7,6 @@ def call(int count = 0) {
     echo "${count} is not prime"
     return
   }
-  echo "it's prime"
+  echo "${count} it's prime"
   return
 }
