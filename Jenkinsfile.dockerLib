@@ -1,4 +1,9 @@
 @Library('jenkinsLibs') _
+
+import com.mario21ic.GlobalVars
+import com.mario21ic.Bar
+
+
 pipeline {
     agent any
 
@@ -8,15 +13,29 @@ pipeline {
     }
 
     stages {
-        stage('repo') {
+
+        stage('bar') {
             steps {
-                echo "myvar: ${env.MYVAR}"
+                echo 'The value of foo is : ' + GlobalVars.foo
+
+                script {
+                    def qbar = new Bar()
+                    qbar.age = 5
+                    qbar.increaseAge(2)
+                    echo 'Incremented age, is now : ' + qbar.age
+                }
             }
         }
 
         stage('buildPlugin') {
             steps {
                 buildPlugin name: 'git'
+            }
+        }
+
+        stage('myvar') {
+            steps {
+                echo "myvar: ${env.MYVAR}"
             }
         }
 
@@ -41,6 +60,7 @@ pipeline {
                 echo "after ${env.MYVAR}"
             }
         }
+
         stage('docker push') {
             environment {
                 MYVAR = "valuePush"
