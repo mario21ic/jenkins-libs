@@ -4,12 +4,13 @@ pipeline {
 
     environment {
         IMAGE = "mario21ic/nginx:${BUILD_ID}"
+        MYVAR = "myDefaultValue"
     }
 
     stages {
         stage('docker build') {
-            env {
-                MYVAR = "myvaluexD"
+            environment {
+                MYVAR = "valueBuild"
             }
             steps {
                 script {
@@ -22,6 +23,9 @@ pipeline {
             }
         }
         stage('docker push') {
+            environment {
+                MYVAR = "valuePush"
+            }
             steps {
                 script {
                     dockerLib.push(DockerImage: "${env.IMAGE}")
