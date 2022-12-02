@@ -14,6 +14,10 @@ pipeline {
             }
         }
 
+        stage('buildPlugin') {
+            buildPlugin name: 'git'
+        }
+
         stage('docker build') {
             environment {
                 MYVAR = "valueBuild"
