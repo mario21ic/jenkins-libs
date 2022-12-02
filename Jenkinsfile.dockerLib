@@ -27,6 +27,7 @@ pipeline {
                                     DockerImage: "${env.IMAGE}",
                                     DockerContext: "./")
 
+                    sh "./scripts/demo.sh"
                     echo "after dockerLib ${env.MYVAR}"
                 }
                 echo "after ${env.MYVAR}"

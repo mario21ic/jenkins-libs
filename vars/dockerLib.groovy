@@ -10,6 +10,8 @@ def push(Map params){
     echo "push - myvar: ${this.env.MYVAR}"
     echo "push - myvar: ${MYVAR}"
 
+    sh "./scripts/demo.sh"
+
     //sh "docker push ${params.DockerImage}"
     echo "docker push ${params.DockerImage}"
 }
