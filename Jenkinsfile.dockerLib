@@ -20,10 +20,10 @@ pipeline {
             }
             steps {
                 echo "before ${env.MYVAR}"
-                echo "GlobalVars.foo: ${GlobalVars.foo}"
                 sayHello 'mair'
                 script {
                     log.info 'Starting'
+                    echo "GlobalVars.foo: ${GlobalVars.foo}"
 
                     dockerLib.build(DockerfilePath: "./Dockerfile",
                                     DockerImage: "${env.IMAGE}",
