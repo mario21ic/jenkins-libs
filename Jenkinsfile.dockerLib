@@ -18,7 +18,7 @@ pipeline {
                     dockerLib.build(DockerfilePath: "./Dockerfile",
                                     DockerImage: "${env.IMAGE}",
                                     DockerContext: "./")
-                    echo ${env.MYVAR}
+                    echo "after dockerLib ${env.MYVAR}"
                 }
                 echo "after ${env.MYVAR}"
             }
@@ -31,6 +31,7 @@ pipeline {
                 echo "before ${env.MYVAR}"
                 script {
                     dockerLib.push(DockerImage: "${env.IMAGE}")
+                    echo "after dockerLib ${env.MYVAR}"
                 }
                 echo "after ${env.MYVAR}"
             }
