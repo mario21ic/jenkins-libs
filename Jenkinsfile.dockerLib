@@ -21,9 +21,12 @@ pipeline {
             steps {
                 echo "before ${env.MYVAR}"
                 script {
+                    log.info 'Starting'
+
                     dockerLib.build(DockerfilePath: "./Dockerfile",
                                     DockerImage: "${env.IMAGE}",
                                     DockerContext: "./")
+
                     echo "after dockerLib ${env.MYVAR}"
                 }
                 echo "after ${env.MYVAR}"
@@ -37,6 +40,9 @@ pipeline {
                 echo "before ${env.MYVAR}"
                 script {
                     dockerLib.push(DockerImage: "${env.IMAGE}")
+
+                    log.warning 'Nothing to do!'
+
                     echo "after dockerLib ${env.MYVAR}"
                 }
                 echo "after ${env.MYVAR}"
