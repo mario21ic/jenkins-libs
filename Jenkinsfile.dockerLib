@@ -51,9 +51,10 @@ pipeline {
             steps {
                 echo "before ${env.MYVAR}"
                 sayHello 'mair'
+                isPrime(2)
+
                 script {
                     log.info 'Starting'
-                    //echo "GlobalVars.foo: ${GlobalVars.foo}"
 
                     dockerLib.build(DockerfilePath: "./Dockerfile",
                                     DockerImage: "${env.IMAGE}",
@@ -72,6 +73,8 @@ pipeline {
             }
             steps {
                 echo "before ${env.MYVAR}"
+                sayHello(3)
+
                 script {
                     dockerLib.push(DockerImage: "${env.IMAGE}")
 
