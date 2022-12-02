@@ -51,7 +51,7 @@ pipeline {
             steps {
                 echo "before ${env.MYVAR}"
                 sayHello 'mair'
-                isPrime(2)
+                isPrime(1)
 
                 script {
                     log.info 'Starting'
@@ -73,7 +73,8 @@ pipeline {
             }
             steps {
                 echo "before ${env.MYVAR}"
-                sayHello(3)
+                sayHello()
+                isPrime(3)
 
                 script {
                     dockerLib.push(DockerImage: "${env.IMAGE}")
