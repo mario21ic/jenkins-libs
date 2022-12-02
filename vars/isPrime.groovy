@@ -5,6 +5,8 @@ def call(int count = 0) {
   if (!Primes.isPrime(count)) {
     //error "${count} was not prime"
     echo "${count} is not prime"
+    return
   }
   echo "it's prime"
+  return
 }
