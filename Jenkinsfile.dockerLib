@@ -8,6 +8,12 @@ pipeline {
     }
 
     stages {
+        stage('repo') {
+            steps {
+                echo "myvar: ${env.MYVAR}"
+            }
+        }
+
         stage('docker build') {
             environment {
                 MYVAR = "valueBuild"

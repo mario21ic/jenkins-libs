@@ -1,11 +1,15 @@
 def build(Map params){
-    echo "myvar: ${this.env.MYVAR}"
+    echo "build - myvar: ${this.env.MYVAR}"
+    echo "build - myvar: ${MYVAR}"
+
     //sh "docker build -f ${params.DockerfilePath} -t ${params.DockerImage} ${params.DockerArgs} ${params.DockerContext}"
     echo "docker build -f ${params.DockerfilePath} -t ${params.DockerImage} ${params.DockerArgs} ${params.DockerContext}"
 }
 
 def push(Map params){
-    echo "myvar: ${this.env.MYVAR}"
+    echo "push - myvar: ${this.env.MYVAR}"
+    echo "push - myvar: ${MYVAR}"
+
     //sh "docker push ${params.DockerImage}"
     echo "docker push ${params.DockerImage}"
 }
