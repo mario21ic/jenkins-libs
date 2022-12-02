@@ -15,7 +15,9 @@ pipeline {
         }
 
         stage('buildPlugin') {
-            buildPlugin name: 'git'
+            script {
+                buildPlugin name: 'git'
+            }
         }
 
         stage('docker build') {
