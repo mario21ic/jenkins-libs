@@ -20,6 +20,7 @@ pipeline {
             }
             steps {
                 echo "before ${env.MYVAR}"
+                echo "GlobalVars.foo: ${GlobalVars.foo}"
                 sayHello 'mair'
                 script {
                     log.info 'Starting'
