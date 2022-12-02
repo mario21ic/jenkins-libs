@@ -7,10 +7,16 @@ class Bar {
 */
 
 class Bar {
-   String name
-   Integer age
+    String name
+    Integer age
+    String address
 
-   def increaseAge(Integer years) {
-      this.age += years
-   }
+    Bar(name, address="Nowhere") {
+        this.name = name
+        this.address = address
+    }
+
+    def increaseAge(Integer years) {
+        this.age += years
+    }
 }
