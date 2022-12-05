@@ -1,0 +1,6 @@
+@Library('jenkinsLibs') _
+dockerPipeline(
+    dockerfilePath: "./Dockerfile",
+    dockerImage: "mario21ic/nginx:${BUILD_ID}",
+    dockerContext: "./"
+)
