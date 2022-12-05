@@ -1,0 +1,73 @@
+@Library('jenkinsLibs') _
+
+import com.mario21ic.GlobalVars
+import com.mario21ic.Bar
+
+
+pipeline {
+    agent any
+
+    environment {
+        IMAGE = "mario21ic/nginx:${BUILD_ID}"
+        MYVAR = "myDefaultValue"
+    }
+
+    stages {
+
+        stage('buildPlugin') {
+            steps {
+                buildPlugin name: 'git'
+            }
+        }
+
+        stage('myvar') {
+            steps {
+                echo "myvar: ${env.MYVAR}"
+            }
+        }
+
+        stage('docker build') {
+            environment {
+                MYVAR = "valueBuild"
+            }
+            steps {
+                echo "before ${env.MYVAR}"
+                sayHello 'mair'
+                isPrime(1)
+
+                script {
+                    log.info 'Starting'
+
+                    dockerLib.build(DockerfilePath: "./Dockerfile",
+                                    DockerImage: "${env.IMAGE}",
+                                    DockerContext: "./")
+
+                    sh "./scripts/demo.sh"
+                    echo "after dockerLib ${env.MYVAR}"
+                }
+                echo "after ${env.MYVAR}"
+            }
+        }
+
+        stage('docker push') {
+            environment {
+                MYVAR = "valuePush"
+            }
+            steps {
+                echo "before ${env.MYVAR}"
+                sayHello()
+                isPrime(3)
+
+                script {
+                    dockerLib.push(DockerImage: "${env.IMAGE}")
+
+                    log.warning 'Nothing to do!'
+
+                    echo "after dockerLib ${env.MYVAR}"
+                }
+                echo "after ${env.MYVAR}"
+            }
+        }
+    }
+}
+

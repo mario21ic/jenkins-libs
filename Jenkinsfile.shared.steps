@@ -1,0 +1,37 @@
+@Library('jenkinsLibs') _
+
+pipeline {
+    agent any
+
+    stages {
+
+        stage('buildPlugin') {
+            steps {
+                buildPlugin name: 'git'
+            }
+        }
+
+        stage('docker build') {
+            steps {
+                sayHello 'mair'
+                isPrime(1)
+
+                script {
+                    log.info 'Starting'
+                }
+            }
+        }
+
+        stage('docker push') {
+            steps {
+                sayHello()
+                isPrime(3)
+
+                script {
+                    log.warning 'Nothing to do!'
+                }
+            }
+        }
+    }
+}
+

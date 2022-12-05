@@ -1,0 +1,31 @@
+@Library('jenkinsLibs') _
+
+import com.mario21ic.GlobalVars
+import com.mario21ic.Bar
+
+
+pipeline {
+    agent any
+
+    stages {
+
+        stage('bar') {
+            steps {
+                echo 'The value of foo is : ' + GlobalVars.foo
+
+                script {
+                    def qbar = new Bar('quartobar')
+                    qbar.age = 5
+                    echo 'Bar name: ' + qbar.name
+                    echo 'Bar age: ' + qbar.age
+                    echo 'Bar address: ' + qbar.address
+
+                    qbar.increaseAge(2)
+                    echo 'Incremented age, is now : ' + qbar.age
+                }
+            }
+        }
+
+    }
+}
+
