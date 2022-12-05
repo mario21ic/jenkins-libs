@@ -1,9 +1,5 @@
 @Library('jenkinsLibs') _
 
-import com.mario21ic.GlobalVars
-import com.mario21ic.Bar
-
-
 pipeline {
     agent any
 
@@ -13,12 +9,6 @@ pipeline {
     }
 
     stages {
-
-        stage('buildPlugin') {
-            steps {
-                buildPlugin name: 'git'
-            }
-        }
 
         stage('myvar') {
             steps {
@@ -32,13 +22,10 @@ pipeline {
             }
             steps {
                 echo "before ${env.MYVAR}"
-                sayHello 'mair'
-                isPrime(1)
-
                 script {
                     log.info 'Starting'
 
-                    dockerLib.build(DockerfilePath: "./Dockerfile",
+                    dockerLibEnvVars.build(DockerfilePath: "./Dockerfile",
                                     DockerImage: "${env.IMAGE}",
                                     DockerContext: "./")
 
@@ -55,14 +42,8 @@ pipeline {
             }
             steps {
                 echo "before ${env.MYVAR}"
-                sayHello()
-                isPrime(3)
-
                 script {
-                    dockerLib.push(DockerImage: "${env.IMAGE}")
-
-                    log.warning 'Nothing to do!'
-
+                    dockerLibEnvVars.push(DockerImage: "${env.IMAGE}")
                     echo "after dockerLib ${env.MYVAR}"
                 }
                 echo "after ${env.MYVAR}"
