@@ -3,13 +3,13 @@ pipeline {
     stages {
         stage('docker build') {
             steps {
-                sh "docker build -f ./Dockerfile -t mario21ic/nginx:${env.BUILD_NUMBER} ./"
+                echo "docker build -f ./Dockerfile -t mario21ic/nginx:${env.BUILD_NUMBER} ./"
                 printMessage("build")
             }
         }
         stage('docker push') {
             steps {
-                sh "docker push mario21ic/nginx:${env.BUILD_NUMBER}"
+                echo "docker push mario21ic/nginx:${env.BUILD_NUMBER}"
                 printMessage("push")
             }
         }
